@@ -13,7 +13,7 @@ class TodoListContainer extends React.Component {
         },
         {
           id: 2,
-          title: 'lov is nothing for a programmer',
+          title: 'No balance nothing for a programmer',
           completed: true,
         },
         {

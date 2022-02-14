@@ -10,7 +10,17 @@ class TodoItem extends React.Component {
 
   render() {
     const { Item } = this.state;
-    return <li>{Item.todoItem.title}</li>;
+    return (
+      <li>
+        <input
+          type="checkbox"
+          checked={Item.todoItem.completed}
+          onChange={() => console.log('CLIKED')}
+        />
+        {' '}
+        {Item.todoItem.title}
+      </li>
+    );
   }
 }
 

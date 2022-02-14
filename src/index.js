@@ -1,12 +1,12 @@
 // import react from "react";
-import React from "react";
-import reactDom from "react-dom";
-import TdodoContainer from "./components/TodoContainer";
+import React from 'react';
+import reactDom from 'react-dom';
+import TodoContainer from './components/TodoContainer';
 
-const ROOT = document.getElementById("root")
+const ROOT = document.getElementById('root');
 reactDom.render(
   <React.StrictMode>
-    <TdodoContainer/>
+    <TodoContainer />
   </React.StrictMode>,
-  ROOT
-  )
+  ROOT,
+);

@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoList from './TodoList';
 
 class TodoListContainer extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class TodoListContainer extends React.Component {
         },
         {
           id: 3,
-          title: 'Let think positif',
+          title: 'Suceed to render one stage',
           completed: true,
         },
       ],
@@ -27,11 +28,9 @@ class TodoListContainer extends React.Component {
   render() {
     const { todo } = this.state;
     return (
-      <ul>
-        {todo.map((items) => (
-          <li key={items.id}>{items.title}</li>
-        ))}
-      </ul>
+      <div>
+        <TodoList listElem={todo} />
+      </div>
     );
   }
 }

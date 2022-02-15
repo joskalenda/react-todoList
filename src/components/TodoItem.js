@@ -15,7 +15,7 @@ class TodoItem extends React.Component {
         <input
           type="checkbox"
           checked={Item.todoItem.completed}
-          onChange={() => console.log('CLIKED')}
+          onChange={() => Item.handleChangeProps(Item.todoItem.id)}
         />
         {' '}
         {Item.todoItem.title}

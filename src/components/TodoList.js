@@ -15,7 +15,14 @@ class TodoList extends React.Component {
     return (
       <ul>
         {/* {List.listElem.map((items) => (<li key={items.id}>{items.title}</li>))} */}
-        {List.listElem.map((items) => (<TodoItem key={items.id} todoItem={items} handleChangeProps={List.handleChangeProps} />))}
+        {List.listElem.map((items) => (
+          <TodoItem
+            key={items.id}
+            todoItem={items}
+            handleChangeProps={List.handleChangeProps}
+            removeTodoProps={List.removeTodoProps}
+          />
+        ))}
 
       </ul>
     );

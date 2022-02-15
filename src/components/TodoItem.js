@@ -19,6 +19,9 @@ class TodoItem extends React.Component {
         />
         {' '}
         {Item.todoItem.title}
+        <button type="button" onClick={() => Item.removeTodoProps(Item.todoItem.id)}>
+          Remove
+        </button>
       </li>
     );
   }

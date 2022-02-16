@@ -8,53 +8,40 @@ class TodoListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: [
-        {
-          id: uuidv4(),
-          title: 'setup dev environement',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'No balance nothing for a programmer',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Suceed to render one stage',
-          completed: false,
-        },
-      ],
+      todo: [],
     };
   }
 
-  // using prevState methode to toggle the checkbox
-  // handleChange = (id) => {
-  //   this.setState((prevState) => ({
-  //     todo: prevState.todo.map((item) => {
-  //       if (item.id === id) {
-  //         return {
+  componentDidMount() {
+    const temp = localStorage.getItem('todo');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todo: loadedTodos,
+      });
+    }
+  }
 
-  //           ...item, completed: !item.completed,
-  //         };
-  //       }
-  //       return item;
-  //     }),
-  //   }));
-  // };
-
-  // using this.state methode to toggle the chekced box
-  handleChange = (id) => {
+  componentDidUpdate(prevProps, prevState) {
     const { todo } = this.state;
-    this.setState({
-      todo: todo.map((item) => {
-        if (item.id === id) {
-          // eslint-disable-next-line no-param-reassign
-          item.completed = !item.completed;
+    if (prevState.todo !== todo) {
+      const temp = JSON.stringify(todo);
+      localStorage.setItem('todo', temp);
+    }
+  }
+
+  handleChange = (id) => {
+    this.setState((prevState) => ({
+      todo: prevState.todo.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
         }
-        return item;
+        return todo;
       }),
-    });
+    }));
   };
 
   // methode to remove the todo
@@ -72,7 +59,7 @@ class TodoListContainer extends React.Component {
     const newTodo = {
       id: uuidv4(),
       title,
-      completed: true,
+      completed: false,
     };
     this.setState({
       todo: [...todo, newTodo],

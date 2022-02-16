@@ -4,9 +4,7 @@ import styles from './TodoItem.module.css';
 class TodoItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      Item: this.props,
-    };
+    this.state = {};
   }
 
   render() {
@@ -16,21 +14,22 @@ class TodoItem extends React.Component {
       opacity: 0.4,
       textDecoration: 'line-through',
     };
-    const { Item } = this.state;
+    const {handleChangeProps, removeTodoProps, todoItem} = this.props;
+    const {completed, id, title} = todoItem;
     return (
       <li className={styles.item}>
         <input
           className={styles.checkox}
           type="checkbox"
-          checked={Item.todoItem.completed}
-          onChange={() => Item.handleChangeProps(Item.todoItem.id)}
+          checked={completed}
+          onChange={() => handleChangeProps(id)}
         />
-        <button type="button" onClick={() => Item.removeTodoProps(Item.todoItem.id)}>
+        <button type="button" onClick={() => removeTodoProps(id)}>
           Remove
         </button>
-        <span style={Item.todoItem.completed ? completedStyle : null}>
+        <span style={completed ? completedStyle : null}>
           {' '}
-          {Item.todoItem.title}
+          {title}
         </span>
       </li>
     );

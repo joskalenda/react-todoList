@@ -5,22 +5,20 @@ import TodoItem from './TodoItem';
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      List: this.props,
-    };
+    this.state = {};
   }
 
   render() {
-    const { List } = this.state;
+    const { listElem, handleChangeProps, removeTodoProps } = this.props;
     return (
       <ul>
         {/* {List.listElem.map((items) => (<li key={items.id}>{items.title}</li>))} */}
-        {List.listElem.map((items) => (
+        {listElem.map((items) => (
           <TodoItem
             key={items.id}
             todoItem={items}
-            handleChangeProps={List.handleChangeProps}
-            removeTodoProps={List.removeTodoProps}
+            handleChangeProps={handleChangeProps}
+            removeTodoProps={removeTodoProps}
           />
         ))}
 

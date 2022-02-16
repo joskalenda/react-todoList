@@ -5,7 +5,6 @@ class InputTodo extends Component {
     super(props);
     this.state = {
       title: '',
-      Addtodo: this.props,
     };
   }
 
@@ -15,14 +14,14 @@ class InputTodo extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, Addtodo } = this.state;
+    const { title } = this.state;
+    const { addTodoProps } = this.props;
     if (title.trim()) {
-      Addtodo.addTodoProps(title);
+      addTodoProps(title);
       this.setState({ title: '' });
     } else {
-      alert('Please write an item');
+      e.preventDefault();
     }
-    // console.log(title);
   };
 
   render() {

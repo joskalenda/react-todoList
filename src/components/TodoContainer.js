@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
 import InputTodo from './InputTodo';
 import TodoList from './TodoList';
@@ -9,17 +10,17 @@ class TodoListContainer extends React.Component {
     this.state = {
       todo: [
         {
-          id: 1,
+          id: uuidv4(),
           title: 'setup dev environement',
           completed: false,
         },
         {
-          id: 2,
+          id: uuidv4(),
           title: 'No balance nothing for a programmer',
           completed: false,
         },
         {
-          id: 3,
+          id: uuidv4(),
           title: 'Suceed to render one stage',
           completed: false,
         },
@@ -65,17 +66,32 @@ class TodoListContainer extends React.Component {
     });
   };
 
+  addTodoItem = (title) => {
+    const { todo } = this.state;
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      completed: true,
+    };
+    this.setState({
+      todo: [...todo, newTodo],
+    });
+  };
+
   render() {
     const { todo } = this.state;
     return (
-      <div>
-        <Header />
-        <InputTodo />
-        <TodoList
-          listElem={todo}
-          handleChangeProps={this.handleChange}
-          removeTodoProps={this.removeTodo}
-        />
+      <div className="container">
+        <div className="inner">
+          <Header />
+          <InputTodo addTodoProps={this.addTodoItem} />
+          <TodoList
+            listElem={todo}
+            handleChangeProps={this.handleChange}
+            removeTodoProps={this.removeTodo}
+          />
+
+        </div>
       </div>
     );
   }

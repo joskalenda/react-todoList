@@ -49,6 +49,7 @@ class TodoListContainer extends React.Component {
     this.setState({
       todo: todo.map((item) => {
         if (item.id === id) {
+          // eslint-disable-next-line no-param-reassign
           item.completed = !item.completed;
         }
         return item;

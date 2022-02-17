@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
@@ -14,12 +15,12 @@ class TodoItem extends React.Component {
       opacity: 0.4,
       textDecoration: 'line-through',
     };
-    const {handleChangeProps, removeTodoProps, todoItem} = this.props;
-    const {completed, id, title} = todoItem;
+    const { handleChangeProps, removeTodoProps, todoItem } = this.props;
+    const { completed, id, title } = todoItem;
     return (
       <li className={styles.item}>
         <input
-          className={styles.checkox}
+          className={styles.checkbox}
           type="checkbox"
           checked={completed}
           onChange={() => handleChangeProps(id)}
@@ -36,4 +37,10 @@ class TodoItem extends React.Component {
   }
 }
 
+TodoItem.propTypes = {
+  handleChangeProps: propTypes.func.isRequired,
+  removeTodoProps: propTypes.func.isRequired,
+  todoItem: propTypes.func.isRequired,
+
+};
 export default TodoItem;

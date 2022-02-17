@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
 import React from 'react';
+import propTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 class TodoList extends React.Component {
@@ -26,5 +26,12 @@ class TodoList extends React.Component {
     );
   }
 }
+
+TodoList.propTypes = {
+  handleChangeProps: propTypes.func.isRequired,
+  removeTodoProps: propTypes.func.isRequired,
+  listElem: propTypes.func.isRequired,
+
+};
 
 export default TodoList;

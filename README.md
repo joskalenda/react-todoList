@@ -1,6 +1,6 @@
 # React TODOList App
 
-To do list is a simple Application to schedule tasks, we build this awesome product with plaint ES6 and Webpack server, this is what makes it more powerfully.
+To do list is a simple Application to schedule tasks, we build this awesome product with plaint ReactJS, this is what makes it more powerfully.
 
 # Web presentation
 

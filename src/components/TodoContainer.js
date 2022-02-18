@@ -1,37 +1,86 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import Header from './Header';
+import InputTodo from './InputTodo';
+import TodoList from './TodoList';
 
 class TodoListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: [
-        {
-          id: 1,
-          title: 'setup dev environement',
-          completed: true,
-        },
-        {
-          id: 2,
-          title: 'lov is nothing for a programmer',
-          completed: true,
-        },
-        {
-          id: 3,
-          title: 'Let think positif',
-          completed: true,
-        },
-      ],
+      todo: [],
     };
   }
+
+  componentDidMount() {
+    const temp = localStorage.getItem('todo');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todo: loadedTodos,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { todo } = this.state;
+    if (prevState.todo !== todo) {
+      const temp = JSON.stringify(todo);
+      localStorage.setItem('todo', temp);
+    }
+  }
+
+  handleChange = (id) => {
+    this.setState((prevState) => ({
+      todo: prevState.todo.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }),
+    }));
+  };
+
+  // methode to remove the todo
+  removeTodo = (id) => {
+    const { todo } = this.state;
+    this.setState({
+      todo: [
+        ...todo.filter((item) => item.id !== id),
+      ],
+    });
+  };
+
+  addTodoItem = (title) => {
+    const { todo } = this.state;
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      completed: false,
+    };
+    this.setState({
+      todo: [...todo, newTodo],
+    });
+  };
 
   render() {
     const { todo } = this.state;
     return (
-      <ul>
-        {todo.map((items) => (
-          <li key={items.id}>{items.title}</li>
-        ))}
-      </ul>
+      <div className="container">
+        <div className="inner">
+          <Header />
+          <InputTodo addTodoProps={this.addTodoItem} />
+          <TodoList
+            listElem={todo}
+            handleChangeProps={this.handleChange}
+            removeTodoProps={this.removeTodo}
+          />
+
+        </div>
+      </div>
     );
   }
 }

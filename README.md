@@ -4,9 +4,9 @@ To do list is a simple Application to schedule tasks, we build this awesome prod
 
 # Web presentation
 
-> || Home page|| Add todo|| 
-> |-|---------|-|--------||
-> || ![Screenshot1](./asset/react.png) || ![Screenshot1](./asset/todo.png) ||
+> |-| Home page|-| Add todo|-| 
+> |-|---------|-|--------|-|
+> |-| ![Screenshot1](./asset/react.png) |-| ![Screenshot1](./asset/todo.png) |-|
 
 ## Live Demo
 
